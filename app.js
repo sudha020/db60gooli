@@ -15,7 +15,7 @@ var usersRouter = require('./routes/users');
 var umbrellaRouter = require('./routes/umbrella');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
-var selectorRouter = require('./routes/resource');
+var resourceRouter = require('./routes/resource');
 var umbrella = require("./models/umbrella"); 
 
 var app = express();
