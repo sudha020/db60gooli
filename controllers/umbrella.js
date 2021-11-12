@@ -28,27 +28,6 @@ exports.umbrella_delete = function(req, res) {
     res.send('NOT IMPLEMENTED: umbrella delete DELETE ' + req.params.id); 
 }; 
  
-// Handle umbrella update form on PUT. 
-exports.umbrella_update_put = function(req, res) { 
-   // res.send('NOT IMPLEMENTED: umbrella update PUT' + req.params.id);
-   console.log(req.body) 
-   let document = new umbrella(); 
-   // We are looking for a body, since POST does not have query parameters. 
-   // Even though bodies can be in many different formats, we will be picky 
-   // and require that it be a json object 
-   // {"umbrella_type":"goat", "cost":12, "size":"large"} 
-   document.use = req.body.use; 
-   document.type = req.body.type; 
-   document.cost = req.body.cost; 
-   try{ 
-       let result = await document.save(); 
-       res.send(result); 
-   } 
-   catch(err){ 
-       res.status(500); 
-       res.send(`{"error": ${err}}`); 
-   }    
-}; 
 // List of all umbrellas 
 exports.umbrella_list = async function(req, res) { 
     try{ 
