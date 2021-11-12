@@ -30,7 +30,24 @@ exports.umbrella_delete = function(req, res) {
  
 // Handle umbrella update form on PUT. 
 exports.umbrella_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: umbrella update PUT' + req.params.id); 
+   // res.send('NOT IMPLEMENTED: umbrella update PUT' + req.params.id);
+   console.log(req.body) 
+   let document = new umbrella(); 
+   // We are looking for a body, since POST does not have query parameters. 
+   // Even though bodies can be in many different formats, we will be picky 
+   // and require that it be a json object 
+   // {"umbrella_type":"goat", "cost":12, "size":"large"} 
+   document.use = req.body.use; 
+   document.type = req.body.type; 
+   document.cost = req.body.cost; 
+   try{ 
+       let result = await document.save(); 
+       res.send(result); 
+   } 
+   catch(err){ 
+       res.status(500); 
+       res.send(`{"error": ${err}}`); 
+   }    
 }; 
 // List of all umbrellas 
 exports.umbrella_list = async function(req, res) { 
@@ -76,13 +93,13 @@ exports.umbrella_create_post = async function(req, res) {
     }   
 }; 
 
-exports.costume_update_put = async function(req, res) { 
+exports.umbrella_update_put = async function(req, res) { 
     console.log(`update on id ${req.params.id} with body 
 ${JSON.stringify(req.body)}`) 
     try { 
-        let toUpdate = await Costume.findById( req.params.id) 
+        let toUpdate = await umbrella.findById( req.params.id) 
         // Do updates of properties 
-        if(req.body.age)  
+        if(req.body.use)  
                toUpdate.use = req.body.use; 
         if(req.body.type) toUpdate.type = req.body.type; 
         if(req.body.cost) toUpdate.cost = req.body.cost; 
