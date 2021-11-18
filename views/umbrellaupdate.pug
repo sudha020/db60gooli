@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let uid = toShow._id 
+  - let u_type = toShow.u_type 
+  - let ucost = toShow.cost 
+  - let uuser = toShow.user 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{uid} 
+  - let actionid = "/resource/umbrella/" + costumeid 
+  form(id='CostumeForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.costumeAttr(for='u_type')  type 
+        input#u_type(type='text', name='u_type', value= u_type ) 
+    div.form-group 
+        label.costumeAttr(for='uuser')  user
+        input#uuser(type='text', name='uuser', value= user ) 
+    div.form-group 
+        label.costumeAttr(for='ucost')  cost 
+        input#ucost(type='number', name='ucost', value= ucost ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['CostumeForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
