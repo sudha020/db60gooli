@@ -1,6 +1,6 @@
 var umbrella = require('../models/umbrella'); 
  
-// List of all umbrellas 
+// List of all umbrella 
 exports.umbrella_list = function(req, res) { 
     res.send('NOT IMPLEMENTED: umbrella list'); 
 }; 
@@ -28,11 +28,11 @@ exports.umbrella_delete = function(req, res) {
     res.send('NOT IMPLEMENTED: umbrella delete DELETE ' + req.params.id); 
 }; 
  
-// List of all umbrellas 
+// List of all umbrella 
 exports.umbrella_list = async function(req, res) { 
     try{ 
-        theumbrellas = await umbrella.find(); 
-        res.send(theumbrellas); 
+        theumbrella = await umbrella.find(); 
+        res.send(theumbrella); 
     } 
     catch(err){ 
         res.status(500); 
@@ -43,8 +43,8 @@ exports.umbrella_list = async function(req, res) {
 // Handle a show all view 
 exports.umbrella_view_all_Page = async function(req, res) { 
     try{ 
-        theumbrellas = await umbrella.find(); 
-        res.render('umbrella', { title: 'umbrella Search Results', results: theumbrellas }); 
+        theumbrella = await umbrella.find(); 
+        res.render('umbrella', { title: 'umbrella Search Results', results: theumbrella }); 
     } 
     catch(err){ 
         res.status(500); 
