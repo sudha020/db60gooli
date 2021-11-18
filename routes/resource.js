@@ -29,3 +29,5 @@ router.get('/umbrella/:id', umbrella_controller.umbrella_detail);
 router.get('/umbrella', umbrella_controller.umbrella_list); 
  
 module.exports = router; 
+/* GET create umbrella page */ 
+router.get('/create', umbrella_controlers.umbrella_create_Page); 
