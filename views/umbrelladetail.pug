@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let uid = toShow._id 
+  - let utype = toShow.type
+  - let ucost = toShow.cost 
+  - let uuse = toShow.use  
+  div 
+    div.row 
+      div(class='costumeAttr mr-3') umberilla ID is: 
+      div #{uid} 
+    div.row 
+      div(class='costumeAttr mr-3') umberilla Type is: 
+      div #{utype} 
+    div.row 
+      div(class='costumeAttr mr-3') umberilla Size is: 
+      div #{uuse} 
+    div.row 
+      div(class='costumeAttr mr-3') umberilla ucost is: 
+      div #{ucost}

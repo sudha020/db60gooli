@@ -5,5 +5,4 @@ const umbrellaSchema = mongoose.Schema({
     cost: Number 
 }) 
  
-module.exports = mongoose.model("umbrella", 
-umbrellaSchema) 
+module.exports = mongoose.model("umbrella",umbrellaSchema) 

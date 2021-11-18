@@ -47,7 +47,35 @@ app.use('/resource', resourceRouter);
 
 
  // We can seed the collection if needed on server start 
-
+async function recreateDB(){ 
+  // Delete everything 
+  await umbrella.deleteMany(); 
+ 
+  let instance1 = new 
+umbrella({use:"Rain",  type:'Big', 
+cost:300}); 
+let instance2 = new 
+umbrella({use:"Sun",  type:'Mid', 
+cost:1200}); 
+let instance3 = new 
+umbrella({use:"Cold",  type:'Small', 
+cost:800}); 
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+  instance2.save( function(err,doc) { 
+    if(err) return console.error(err); 
+    console.log("First object saved") 
+}); 
+instance3.save( function(err,doc) { 
+  if(err) return console.error(err); 
+  console.log("First object saved") 
+}); 
+} 
+ 
+let reseed = true; 
+if (reseed) { recreateDB();} 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
