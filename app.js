@@ -3,12 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 const connectionString =  
 process.env.MONGO_CON 
 mongoose = require('mongoose'); 
 mongoose.connect(connectionString,  
 {useNewUrlParser: true, 
 useUnifiedTopology: true}); 
+var db = mongoose.connection; 
+ 
+//Bind connection to error event  
+db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
+db.once("open", function(){ 
+ console.log("Connection to DB succeeded")}); 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -37,12 +44,7 @@ app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
 //Get the default connection 
-var db = mongoose.connection; 
- 
-//Bind connection to error event  
-db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
-db.once("open", function(){ 
- console.log("Connection to DB succeeded")}); 
+
 
  // We can seed the collection if needed on server start 
 async function recreateDB(){ 

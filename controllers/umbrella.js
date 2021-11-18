@@ -92,3 +92,15 @@ failed`);
     } 
 }; 
  
+// Handle umbrella delete on DELETE. 
+exports.umbrella_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await umbrella.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
